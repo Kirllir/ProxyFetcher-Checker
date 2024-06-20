@@ -9,7 +9,6 @@ Simple proxy parser/scraper and checker with multithreading proxy checking
 - Stable, with not drop because got wrong url/proxy
 
 ## Usage
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
 
 Install the requirements
 ```sh
