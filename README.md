@@ -1,6 +1,6 @@
 
 # Proxy Fetcher&Checker
-Simple proxy parser/scraper and checker with multithreading proxy checking
+Simple proxy parser/scraper and checker with multithreading capability
 ## Features
 - Fetch proxy from any proxy list
 - Multithreaded proxy checking (4:03 to check 165k with 10000 threads on Ryzen 5 5600x)
