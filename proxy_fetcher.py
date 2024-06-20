@@ -51,7 +51,7 @@ def fetch_list(data, url):
                 add_to_list(protocol, ip, port)
             else:
                 stripped_url = url.replace("https://", "")
-                protocol =  (stripped_url)
+                protocol =  determine_protocol(stripped_url)
                 ip, port = proxy.split(":")
                 add_to_list(protocol, ip, port)
 
