@@ -53,8 +53,11 @@ def test_proxy(proxy, working_judges, timeout=timeout, retries=retries):
         elif protocol == 'socks5':
             curl.setopt(pycurl.PROXY, proxy.split('://')[1])
             curl.setopt(pycurl.PROXYTYPE, pycurl.PROXYTYPE_SOCKS5)
-
+        else:
+            curl.setopt(pycurl.PROXY, proxy)
+            curl.setopt(pycurl.PROXYTYPE, pycurl.PROXYTYPE_HTTP)
         curl.setopt(pycurl.WRITEFUNCTION, buffer.write)
+        
 
         try:
             start_time = time.time()
@@ -68,6 +71,7 @@ def test_proxy(proxy, working_judges, timeout=timeout, retries=retries):
                 response = buffer.getvalue().decode('utf-8')
                 http_host_line = f"HTTP_HOST = {judge.split('://')[1].split('/')[0]}"
                 if http_host_line in response:
+                    #print(response)
                     results.append(latency * 1000)
         except pycurl.error:
             continue
@@ -141,6 +145,7 @@ def main():
                         result = future.result()
                         if result:
                             working_proxies.append(result)
+                            #print(f'Working: {result}')
                     except Exception as e:
                         print(f"Unexpected error with proxy {future_to_proxy[future]}: {e}")
                     finally:
